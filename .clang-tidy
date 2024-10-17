@@ -1,0 +1,2 @@
+---
+Checks: "cppcoreguidelines-*,google-*,-cppcoreguidelines-avoid-magic-numbers"
