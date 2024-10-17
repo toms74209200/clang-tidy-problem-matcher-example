@@ -4,14 +4,15 @@ on:
   workflow_call:
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-    - name: Setup C++
-      run: sudo apt-get update && sudo apt-get install -y build-essential cmake clang clang-tidy
-    - name: Add problem matcher
-      run: echo "::add-matcher::.github/clang-tidy-problem-matcher.json"
-    - name: Run clang-tidy
-      run: make lint
-    - name: Remove problem matcher
-      run: echo "::remove-matcher owner=clang-tidy::"
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup C++
+        run: sudo apt-get update && sudo apt-get install -y build-essential cmake clang clang-tidy
+      - name: Add problem matcher
+        run: echo "::add-matcher::.github/clang-tidy-problem-matcher.json"
+      - name: Run clang-tidy
+        run: make lint
+      - name: Remove problem matcher
+        run: echo "::remove-matcher owner=clang-tidy::"
